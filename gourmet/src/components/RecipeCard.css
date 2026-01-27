@@ -1,0 +1,14 @@
+.card {
+    margin-top: 20px;
+    margin-bottom: 6px;
+    margin-right: 0px;
+    margin-left: 0px;
+
+    box-shadow: none;
+    border: none;
+}
+
+.card-img-top {
+    height: 360px;
+    object-fit: cover;
+}
