@@ -1,5 +1,3 @@
-import React from 'react';
-
 import RecipeCard from './RecipeCard';
 
 interface RecipesListProps {
@@ -8,6 +6,7 @@ interface RecipesListProps {
 
 function RecipesList({ recipes }: RecipesListProps) {
   return (
+    // create a grid of different sizes depending on the screen size
     <div className="container text-center">
       <div className="row row-cols-1 row-cols-lg-2 row-cols-xl-3">
         {recipes.map((recipe) => (

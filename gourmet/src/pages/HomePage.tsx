@@ -1,11 +1,10 @@
-import React from 'react';
 import { useState, useEffect } from 'react';
 
 import RecipesList from '../components/RecipesList';
 
 function HomePage() {
   const [isLoaded, setIsLoaded] = useState(false);
-  const [recipes, setRecipes] = useState([] as RecipeType[]);
+  const [recipes, setRecipes] = useState<RecipeType[]>([] as RecipeType[]);
 
   useEffect(() => {
     fetch(`${import.meta.env.VITE_API_ROUTE}/recipes`, {
@@ -20,7 +19,13 @@ function HomePage() {
   }, []);
 
   return (
-    <div>{isLoaded ? <RecipesList recipes={recipes} /> : 'Loading...'}</div>
+    <div className="container pt-5">
+      {isLoaded ? (
+        <RecipesList recipes={recipes} />
+      ) : (
+        <div className="alert alert-primary">'Loading...'</div>
+      )}
+    </div>
   );
 }
 

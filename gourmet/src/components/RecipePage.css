@@ -1,0 +1,23 @@
+.right-col {
+    padding-left: 50px;
+}
+
+.img-recipe {
+    border-radius: 20px;
+    padding: 0px;
+    width: 100%;
+    height: 480px;
+    object-fit: cover;
+}
+
+.created-by {
+    font-style: italic;
+}
+
+.recipe-name {
+    font-weight: bolder;
+}
+
+.instruction-title {
+    font-weight: bold;
+}
