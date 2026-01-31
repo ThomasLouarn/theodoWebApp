@@ -5,3 +5,7 @@
 .navbar-brand, .nav-link {
     color:#ffffff;
 }
+
+.nav-item {
+    padding-left: 20px;
+}

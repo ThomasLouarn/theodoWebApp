@@ -91,7 +91,7 @@ function Navbar() {
 
   return (
     <AuthContext.Provider value={isAuthenticated}>
-      <nav className="navbar navbar-expand-lg">
+      <nav className="navbar sticky-top navbar-expand-lg">
         <div className="container-fluid">
           {/* Main title */}
           <Link className="navbar-brand" to="/">
