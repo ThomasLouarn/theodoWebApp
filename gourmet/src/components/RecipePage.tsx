@@ -7,7 +7,10 @@ interface RecipePageProps {
 function RecipePage({ recipe }: RecipePageProps) {
   return (
     <div className="row">
+      {/* Empty column for spacing */}
       <div className="col-md-1"></div>
+
+      {/* Column for the image */}
       <div className="col-md-3">
         <div className="row mb-3">
           <img
@@ -18,8 +21,9 @@ function RecipePage({ recipe }: RecipePageProps) {
         </div>
       </div>
 
-      {/* Name, description and other data*/}
+      {/* Column with all the data */}
       <div className="col-md-7 right-col">
+        {/* Name, description and other data*/}
         <h1 className="mb-1 recipe-name">{recipe.name}</h1>
         <h3 className="mb-0">{recipe.description}</h3>
         <div className="mb-4 created-by">proposée par {recipe.created_by}</div>

@@ -96,12 +96,13 @@ function Navbar() {
         <div className="container-fluid">
           {/* Main title */}
           <Link className="navbar-brand" to="/">
-            Recettes
+            Gourmet
           </Link>
 
           {/* Buttons links */}
           <div className="collapse navbar-collapse">
             <ul className="navbar-nav ms-auto">
+              {/* Favorite recipes */}
               {isAuthenticated ? (
                 <li className="nav-item">
                   <Link className="nav-link" to="/favorites">
@@ -112,6 +113,7 @@ function Navbar() {
                 <></>
               )}
 
+              {/* Login/logout button */}
               <li className="nav-item">
                 <button
                   type="button"
@@ -140,6 +142,7 @@ function Navbar() {
         </Modal.Header>
         <Modal.Body>
           <form onSubmit={onLogin}>
+            {/* Username */}
             <div className="input-group mb-3">
               <input
                 type="text"
@@ -149,6 +152,8 @@ function Navbar() {
                 required
               />
             </div>
+
+            {/* Password */}
             <div className="input-group mb-3">
               <input
                 type="password"
@@ -158,6 +163,8 @@ function Navbar() {
                 required
               />
             </div>
+
+            {/* Error alerts */}
             {alertInvalidUsername && (
               <div className="alert alert-danger mb-3">
                 Identifiant invalide.
@@ -173,6 +180,8 @@ function Navbar() {
                 Une erreur est survenue, veuillez réessayer plus tard.
               </div>
             )}
+
+            {/* Login button */}
             <button type="submit" className="btn btn-primary">
               Connexion
             </button>
@@ -186,7 +195,9 @@ function Navbar() {
           <Modal.Title>Déconnexion</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <div className="mb-3">Valider ma déconnection.</div>
+          <div className="mb-3">Vous allez être déconnecté.</div>
+
+          {/* Logout button */}
           <button type="button" className="btn btn-primary" onClick={onLogout}>
             Se déconnecter
           </button>

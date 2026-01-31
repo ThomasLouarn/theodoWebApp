@@ -8,6 +8,7 @@ function Recette() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [recipe, setRecipe] = useState<RecipeType>({} as RecipeType);
 
+  // load data from the API
   useEffect(() => {
     fetch(`${import.meta.env.VITE_API_ROUTE}/recipes/${params.recetteId}`, {
       method: 'GET',
@@ -27,6 +28,7 @@ function Recette() {
           <RecipePage recipe={recipe} />
         </div>
       ) : (
+        // Else loading alert
         <div className="container pt-5">
           <div className="alert alert-primary">'Loading...'</div>
         </div>
