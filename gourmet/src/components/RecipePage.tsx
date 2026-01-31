@@ -1,10 +1,117 @@
+import { useEffect, useContext } from 'react';
+
+import { AuthContext } from '../pages/Navbar';
+
 import './RecipePage.css';
 
 interface RecipePageProps {
   recipe: RecipeType;
+  isFav: boolean;
+  setIsFav: any;
 }
 
-function RecipePage({ recipe }: RecipePageProps) {
+function RecipePage({ recipe, isFav, setIsFav }: RecipePageProps) {
+  let isAuth = useContext(AuthContext);
+
+  // if logged in, check if the recipe is favorite
+  useEffect(() => {
+    if (isAuth) {
+      const token = localStorage.getItem('authToken');
+      fetch(`${import.meta.env.VITE_API_ROUTE}/me`, {
+        method: 'GET',
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.username) {
+            // get favorites
+            fetch(
+              `${import.meta.env.VITE_API_ROUTE}/users/${data.username}/favorites`,
+              {
+                method: 'GET',
+                headers: {
+                  Authorization: `Bearer ${token}`,
+                },
+              },
+            )
+              .then((response2) => response2.json())
+              .then((data2) => {
+                // check if recipe is in the array
+                let isRecipeFav = false;
+                for (const r of data2) {
+                  if (r.recipe.id === recipe.id) {
+                    isRecipeFav = true;
+                  }
+                  if (isRecipeFav) {
+                    setIsFav(true);
+                  }
+                }
+              });
+          }
+        });
+    }
+  }, [isAuth, isFav]);
+
+  // add a recipe to favorites
+  const handleAddFavorite = () => {
+    const token = localStorage.getItem('authToken');
+
+    fetch(`${import.meta.env.VITE_API_ROUTE}/me`, {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.username) {
+          fetch(
+            `${import.meta.env.VITE_API_ROUTE}/users/${data.username}/favorites?recipeID=${recipe.id}`,
+            {
+              method: 'POST',
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+            },
+          )
+            .then((response2) => response2.json())
+            .then((data2) => {
+              if (data2.recipe_id) {
+                setIsFav(true);
+              }
+            });
+        }
+      });
+  };
+
+  // delete a recipe from favorites
+  const handleRemoveFavorite = () => {
+    const token = localStorage.getItem('authToken');
+
+    fetch(`${import.meta.env.VITE_API_ROUTE}/me`, {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.username) {
+          fetch(
+            `${import.meta.env.VITE_API_ROUTE}/users/${data.username}/favorites?recipeID=${recipe.id}`,
+            {
+              method: 'DELETE',
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+            },
+          ).then(setIsFav(false));
+        }
+      });
+  };
+
   return (
     <div className="row">
       {/* Empty column for spacing */}
@@ -23,8 +130,20 @@ function RecipePage({ recipe }: RecipePageProps) {
 
       {/* Column with all the data */}
       <div className="col-md-7 right-col">
-        {/* Name, description and other data*/}
-        <h1 className="mb-1 recipe-name">{recipe.name}</h1>
+        {/* Name and fav button */}
+        <div className="d-flex align-items-center gap-3">
+          <h1 className="mb-1 recipe-name">{recipe.name}</h1>
+          {isAuth && (
+            <img
+              className="fav-icon"
+              src={`../src/assets/fav-icon-${isFav ? 'full' : 'empty'}.svg`}
+              alt="fav-icon"
+              onClick={isFav ? handleRemoveFavorite : handleAddFavorite}
+            />
+          )}
+        </div>
+
+        {/* Description, creator and disclaimer */}
         <h3 className="mb-0">{recipe.description}</h3>
         <div className="mb-4 created-by">proposée par {recipe.created_by}</div>
 

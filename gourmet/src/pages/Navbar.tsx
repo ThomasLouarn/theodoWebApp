@@ -28,7 +28,6 @@ function Navbar() {
       })
         .then((response) => response.json())
         .then((data) => {
-          console.log(data);
           if (data.username) {
             setIsAuthentificated(true);
           }

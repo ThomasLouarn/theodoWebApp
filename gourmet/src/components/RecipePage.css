@@ -20,6 +20,10 @@
     font-weight: bolder;
 }
 
+.fav-icon {
+    height: 35px;
+}
+
 .instruction-title {
     font-weight: bold;
 }

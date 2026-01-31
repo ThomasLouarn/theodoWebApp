@@ -7,6 +7,7 @@ function Recette() {
 
   const [isLoaded, setIsLoaded] = useState(false);
   const [recipe, setRecipe] = useState<RecipeType>({} as RecipeType);
+  const [isFav, setIsFav] = useState<boolean>(false);
 
   // load data from the API
   useEffect(() => {
@@ -25,7 +26,7 @@ function Recette() {
     <>
       {isLoaded ? (
         <div className="container-fluid pt-5">
-          <RecipePage recipe={recipe} />
+          <RecipePage recipe={recipe} isFav={isFav} setIsFav={setIsFav} />
         </div>
       ) : (
         // Else loading alert

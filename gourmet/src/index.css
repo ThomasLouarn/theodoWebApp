@@ -21,3 +21,8 @@ img {
   transition: 0.2s;
   background-image: linear-gradient(rgb(0 0 0/20%) 0 0);
 }
+
+.btn-primary:focus {
+  background-color: #9262e2;
+  border: none;
+}
