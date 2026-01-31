@@ -133,14 +133,15 @@ function RecipePage({ recipe, isFav, setIsFav }: RecipePageProps) {
         {/* Name and fav button */}
         <div className="d-flex align-items-center gap-3">
           <h1 className="mb-1 recipe-name">{recipe.name}</h1>
-          {isAuth && isFav ? (
+          {isAuth && isFav && (
             <img
               className="fav-icon"
               src={'/assets/fav-icon-full.svg'}
               alt="fav-icon"
               onClick={isFav ? handleRemoveFavorite : handleAddFavorite}
             />
-          ) : (
+          )}
+          {isAuth && !isFav && (
             <img
               className="fav-icon"
               src={'/assets/fav-icon-empty.svg'}
