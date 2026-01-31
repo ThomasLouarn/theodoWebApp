@@ -3,5 +3,21 @@ body {
   font-weight: 400;
   color: #ffffff;
 
-  background-color: #a6a0ff;
+  background-color: #a4a2ec;
+}
+
+img {
+  image-resolution: 300dpi;
+}
+
+.btn-primary {
+  background-color: #9262e2;
+  border: none;
+}
+
+.btn-primary:hover {
+  background-color: #9262e2;
+  
+  transition: 0.2s;
+  background-image: linear-gradient(rgb(0 0 0/20%) 0 0);
 }

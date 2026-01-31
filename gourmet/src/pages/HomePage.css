@@ -17,8 +17,6 @@
     object-position: top;
 
     filter: brightness(50%);
-
-    image-resolution: 300dpi;
 }
 
 .welcome-title {
