@@ -29,7 +29,7 @@ function HomePage() {
           <div className="row mb-3 img-holder">
             <img
               className="gourmet-img"
-              src="./src/assets/cuisine.jpeg"
+              src="/assets/cuisine.jpeg"
               alt="Welcome to Tau Gourmet!"
             />
             <h1 className="welcome-title">Bienvenue sur Tau Gourmet !</h1>
